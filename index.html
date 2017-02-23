@@ -8,7 +8,7 @@
   -->
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
-  <title>angular-filemanager</title>
+  <title>Bizz File Manager</title>
 
   <!-- third party -->
     <script src="bower_components/angular/angular.min.js"></script>
@@ -42,25 +42,105 @@
     <script src="dist/angular-filemanager.min.js"></script>
   <!-- /Comment if you need to use raw source code -->
   
+  <!--<script type="text/javascript">-->
+    <!--//example to override angular-filemanager default config-->
+    <!--angular.module('FileManagerApp').config(['fileManagerConfigProvider', function (config) {-->
+      <!--var defaults = config.$get();-->
+      <!--config.set({-->
+        <!--appName: 'angular-filemanager',-->
+        <!--pickCallback: function(item) {-->
+          <!--var msg = 'Picked %s "%s" for external use'-->
+            <!--.replace('%s', item.type)-->
+            <!--.replace('%s', item.fullPath());-->
+          <!--window.alert(msg);-->
+        <!--},-->
+
+        <!--allowedActions: angular.extend(defaults.allowedActions, {-->
+          <!--pickFiles: false,-->
+          <!--pickFolders: false,-->
+        <!--}),-->
+      <!--});-->
+    <!--}]);-->
+  <!--</script>-->
   <script type="text/javascript">
     //example to override angular-filemanager default config
-    angular.module('FileManagerApp').config(['fileManagerConfigProvider', function (config) {
-      var defaults = config.$get();
-      config.set({
-        appName: 'angular-filemanager',
-        pickCallback: function(item) {
-          var msg = 'Picked %s "%s" for external use'
-            .replace('%s', item.type)
-            .replace('%s', item.fullPath());
-          window.alert(msg);
-        },
+    angular.module('FileManagerApp')
+            .provider('fileManagerConfig', function() {
+              var values = {
+                appName: 'קבצי עובדים',
+                defaultLang: 'heb',
 
-        allowedActions: angular.extend(defaults.allowedActions, {
-          pickFiles: false,
-          pickFolders: false,
-        }),
-      });
-    }]);
+                listUrl: 'http://localhost:3000/files/list',
+                uploadUrl: 'http://localhost:3000/files/upload',
+                renameUrl: 'http://localhost:3000/files/rename',
+                copyUrl: 'http://localhost:3000/files/copy',
+//                        moveUrl: '../../../../bower_components/angular-filemanager/bridges/php/handler.php',
+                removeUrl: 'http://localhost:3000/files/remove',
+//                        editUrl: '../../../../bower_components/angular-filemanager/bridges/php/handler.php',
+//                        getContentUrl: '../../../../bower_components/angular-filemanager/bridges/php/handler.php',
+                createFolderUrl: 'http://localhost:3000/files/createFolder',
+                downloadFileUrl: 'http://localhost:3000/files/download',
+//                        downloadMultipleUrl: '../../../../bower_components/angular-filemanager/bridges/php/handler.php',
+//                        compressUrl: '../../../../bower_components/angular-filemanager/bridges/php/handler.php',
+//                        extractUrl: '../../../../bower_components/angular-filemanager/bridges/php/handler.php',
+//                        permissionsUrl: '../../../../bower_components/angular-filemanager/bridges/php/handler.php',
+                basePath: '/',
+
+                searchForm: true,
+                sidebar: false,
+                breadcrumb: true,
+
+                allowedActions: {
+                  upload: true,
+                  rename: true,
+//                            move: true,
+                  copy: true,
+                  edit: true,
+//                            changePermissions: true,
+//                            compress: true,
+//                            compressChooseName: true,
+//                            extract: true,
+                  download: true,
+//                            downloadMultiple: true,
+                  preview: true,
+                  remove: true,
+                  createFolder: true,
+                  pickFiles: true,
+                  pickFolders: false
+                },
+
+                multipleDownloadFileName: 'angular-filemanager.zip',
+                filterFileExtensions: [],
+                showExtensionIcons: true,
+                showSizeForDirectories: false,
+                useBinarySizePrefixes: false,
+                downloadFilesByAjax: true,
+                previewImagesInModal: true,
+                enablePermissionsRecursive: true,
+                compressAsync: false,
+                extractAsync: false,
+//                        pickCallback: null,
+                pickCallback: function(item) {
+                  var msg = 'Picked %s "%s" for external use'
+                          .replace('%s', item.type)
+                          .replace('%s', item.fullPath());
+                  window.alert(msg);
+                },
+                isEditableFilePattern: /\.(txt|diff?|patch|svg|asc|cnf|cfg|conf|html?|.html|cfm|cgi|aspx?|ini|pl|py|md|css|cs|js|jsp|log|htaccess|htpasswd|gitignore|gitattributes|env|json|atom|eml|rss|markdown|sql|xml|xslt?|sh|rb|as|bat|cmd|cob|for|ftn|frm|frx|inc|lisp|scm|coffee|php[3-6]?|java|c|cbl|go|h|scala|vb|tmpl|lock|go|yml|yaml|tsv|lst)$/i,
+                isImageFilePattern: /\.(jpe?g|gif|bmp|png|svg|tiff?)$/i,
+                isExtractableFilePattern: /\.(gz|tar|rar|g?zip)$/i,
+                tplPath: '../../../../bower_components/angular-filemanager/src/templates'
+              };
+
+              return {
+                $get: function () {
+                  return values;
+                },
+                set: function (constants) {
+                  angular.extend(values, constants);
+                }
+              };
+            });
   </script>
 </head>
 
