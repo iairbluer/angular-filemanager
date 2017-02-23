@@ -1,9 +1,10 @@
 {
   "name": "HelpMateFileManager",
-  "version": "0.0.1",
-  "homepage": "https://github.com/joni2back/angular-filemanager",
+  "version": "0.0.2",
+  "homepage": "https://github.com/iairbluer/angular-filemanager",
   "authors": [
-    "Jonas Sciangula Street <joni2back@gmail.com>"
+    "Jonas Sciangula Street <joni2back@gmail.com>",
+    "Iair Bluer <iairbluer@gmail.com>"
   ],
   "description": "A very smart filemanager to manage your files in the browser.",
   "main": "js/app.js",
