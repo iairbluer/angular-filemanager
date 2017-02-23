@@ -1,6 +1,6 @@
 {
-  "name": "angular-filemanager",
-  "version": "1.5.1",
+  "name": "HelpMateFileManager",
+  "version": "0.0.3",
   "description": "A very smart filemanager to manage your files in the browser.",
   "main": "src/app.js",
   "scripts": {
@@ -8,17 +8,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joni2back/angular-filemanager.git"
+    "url": "git+https://github.com/iairbluer/angular-filemanager"
   },
   "keywords": [
     "filemanager"
   ],
-  "author": "Jonas Sciangula Street",
+  "author": "Iair Bluer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joni2back/angular-filemanager/issues"
+    "url": "https://github.com/iairbluer/angular-filemanager"
   },
-  "homepage": "https://github.com/joni2back/angular-filemanager#readme",
+  "homepage": "https://github.com/iairbluer/angular-filemanager",
   "devDependencies": {
     "bower": "^1.7.9",
     "del": "^2.2.0",
